@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="./img/logo.webp" type="image/png">
+    <link rel="manifest" href="./manifest.json">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -300,6 +301,18 @@
     </div>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registrado con éxito:', registration);
+                })
+                .catch((error) => {
+                    console.log('Fallo en el registro del Service Worker:', error);
+                });
+        }
+    </script>
+    
     <script>
 window.onload = () => {
     const buttons = document.querySelectorAll('.acestream-button');
