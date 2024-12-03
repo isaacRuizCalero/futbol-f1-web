@@ -6,381 +6,452 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canales Acestream</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #121212;
+            background-color: #141414;
             color: #ffffff;
-            text-align: center;
-            padding: 20px;
             margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: "Outfit", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
         }
 
-        h1 {
-            color: #ffffff;
-            font-weight: 500;
-            margin-bottom: 20px;
+        .carousel {
+            display: flex;
+            overflow: auto;
+            scroll-behavior: smooth; 
+            padding: 20px;
+            gap: 20px;
+            flex-direction: column;
+            overflow-y: scroll;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
         }
 
         .channel {
-            margin: 20px 0;
             padding: 15px;
-            border-radius: 8px;
-            background-color: #1f1f1f;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
         }
 
         .channel-title {
-            font-weight: 500;
             font-size: 1.5em;
             margin-bottom: 10px;
-            margin-top: 10px;
-
+            font-weight: 500;
         }
 
         .buttons-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: row;
             gap: 10px;
-            margin-top: 10px;
         }
 
         .acestream-button {
-            padding: 12px 24px;
+            position: relative;
+            padding: 10px 20px;
             font-size: 1em;
             color: #ffffff;
-            background-color: #3e7bfa;
+            background-color: #85a3e547;
+            backdrop-filter: blur(2px);
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s;
+            cursor: pointer;
+            outline: none;
+            height: 125px;
+            width: 200px;
+            transition: transform ease-in-out 0.7s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
-        .acestream-button:hover {
-            background-color: #3368d4;
+        .acestream-button:focus, .acestream-button:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Solo afecta a transform y box-shadow */
+            box-shadow: 0px 0px 21px 15px #2c39538a;
+            border: 2px solid white; /* El borde se aplica instantáneamente */
         }
 
         .acestream-button:active {
-            background-color: #2750a3;
+            transform: scale(0.95);
+            transition: 0.5s;
         }
 
-        @media (max-width: 600px) {
-            .acestream-button {
-                font-size: 0.9em;
-                padding: 10px 20px;
-            }
+        .acestream-button img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
+
     </style>
 </head>
 
 <body>
-    <h1>Fútbol y F1</h1>
+    <!-- <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+
+<div id="acestream-player-container" style="display: none; margin: 20px auto; width: 500px; height: 200px;">
+    <video id="acestream-video" class="video-js vjs-default-skin" controls autoplay preload="auto" width="500px" height="200px"></video>
+</div>
+<button id="close-player" style="display: none; margin: 10px auto; padding: 10px; background: #444; color: white; border: none; border-radius: 5px;">Cerrar Reproductor</button> -->
+
     
-    <div class="channel">
-        <div class="channel-title">DAZN LaLiga 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://110d441ddc9713a7452588770d2bc85504672f47" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://ec29289b0b14756e686c03a501bae1efa05be70c" class="acestream-button" target="_blank">Opción 2</a>
-            <a href="acestream://6de4794cd02f88f14354b5996823413a59a1de0f" class="acestream-button" target="_blank">Opción 3</a>
+    
+    <div class="carousel" id="carousel">
+        <div class="channel">
+            <div class="channel-title">DAZN LaLiga 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://110d441ddc9713a7452588770d2bc85504672f47" class="acestream-button" target="_blank" tabindex="1">
+                    <img src="./img/DAZN_LaLiga_2023_Logo.svg.png" alt="DAZN LaLiga Logo">
+                </a>
+                <a href="acestream://ec29289b0b14756e686c03a501bae1efa05be70c" class="acestream-button" target="_blank" tabindex="2">
+                    <img src="./img/DAZN_LaLiga_2023_Logo.svg.png" alt="DAZN LaLiga Logo">
+                </a>
+                <a href="acestream://6de4794cd02f88f14354b5996823413a59a1de0f" class="acestream-button" target="_blank" tabindex="3">
+                    <img src="./img/DAZN_LaLiga_2023_Logo.svg.png" alt="DAZN LaLiga Logo">
+                </a>
+            </div>
         </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://8c8c1e047a1c5ed213ba74722a5345dc55c3c0eb" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">DAZN LaLiga 2</div>
+            <div class="buttons-container">
+                <a href="acestream://97ba38d47680954be40e48bd8f43e17222fefecb" class="acestream-button" target="_blank" tabindex="4">
+                    <img src="./img/DAZN_LaLiga_2_2024.svg" alt="DAZN LaLiga 2 Logo">
+                </a>
+                <a href="acestream://51dbbfb42f8091e4ea7a2186b566a40e780953d9" class="acestream-button" target="_blank" tabindex="5">
+                    <img src="./img/DAZN_LaLiga_2_2024.svg" alt="DAZN LaLiga 2 Logo">
+                </a>
+                <a href="acestream://93d663e92a93845b11c9831885646fa39ba1ed66" class="acestream-button" target="_blank" tabindex="6">
+                    <img src="./img/DAZN_LaLiga_2_2024.svg" alt="DAZN LaLiga 2 Logo">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN LaLiga 2</div>
-        <div class="buttons-container">
-            <a href="acestream://97ba38d47680954be40e48bd8f43e17222fefecb" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://51dbbfb42f8091e4ea7a2186b566a40e780953d9" class="acestream-button" target="_blank">Opción 2</a>
-            <a href="acestream://93d663e92a93845b11c9831885646fa39ba1ed66" class="acestream-button" target="_blank">Opción 3</a>
+        <!-- <div class="channel">
+            <div class="channel-title">DAZN LaLiga 3</div>
+            <div class="buttons-container">
+                <a href="acestream://8c71f0e0a5476e10950fc827f9d2a507340aba74" class="acestream-button" target="_blank" tabindex="7">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/DAZN_LaLiga_logo.svg" alt="DAZN LaLiga 3 Logo">
+                </a>
+            </div>
+        </div> -->
+        <div class="channel">
+            <div class="channel-title">DAZN 1 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://7cf0086fa7d478f51dbba952865c79e66cb9add5" class="acestream-button" target="_blank" tabindex="8">
+                    <img src="./img/DAZN_1.webp">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN LaLiga 3</div>
-        <div class="buttons-container">
-            <a href="acestream://8c71f0e0a5476e10950fc827f9d2a507340aba74" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">DAZN F1 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://d6281d4e6310269b416180442a470d23a4a99dc9" class="acestream-button" target="_blank" tabindex="9">
+                    <img src="./img/DAZN_F1_logo.png" alt="">
+                </a>
+                <a href="acestream://71eef80158aa8b37f3dc59f6793c6696df9a2dfa" class="acestream-button" target="_blank" tabindex="10">
+                    <img src="./img/DAZN_F1_logo.png" alt="">
+                </a>
+                <a href="acestream://2c6e4c897661e6b0257bfe931b66d20b2ec763b6" class="acestream-button" target="_blank" tabindex="11">
+                    <img src="./img/DAZN_F1_logo.png" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN 1 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://7cf0086fa7d478f51dbba952865c79e66cb9add5" class="acestream-button" target="_blank">Opción 1</a>
+        <!-- <div class="channel">
+            <div class="channel-title">RFEF</div>
+            <div class="buttons-container">
+                <a href="acestream://c1ee6e1e0ef5928d8261f855c417de21794f437d" class="acestream-button" target="_blank" tabindex="12">Opción 1</a>
+                <a href="acestream://8677d339ecddd75165c0015025f598b6215974cf" class="acestream-button" target="_blank" tabindex="13">Opción 2</a>
+            </div>
+        </div> -->
+        <div class="channel">
+            <div class="channel-title">LaLiga TV Bar 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://aa82e7d4f03061f2144a2f4be22f2e2210d42280" class="acestream-button" target="_blank" tabindex="14">
+                    <img src="./img/f9y6oe1692444384.png" alt="">
+                </a>
+                <a href="acestream://608b0faf7d3d25f6fe5dba13d5e4b4142949990e" class="acestream-button" target="_blank" tabindex="15">
+                    <img src="./img/f9y6oe1692444384.png" alt="">
+                </a>
+            </div>
         </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://35c7f0c966ecde3390f4510bb4caded40018c07a" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">M. LaLiga TV 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://94d34491106e00394835c8cb68aa94481339b53f" class="acestream-button" target="_blank" tabindex="16">
+                    <img src="./img/LaLigaTV_por_Movistar_Plus+_2022_logo.svg.png" alt="">
+                </a>
+                <a href="acestream://d3de78aebe544611a2347f54d5796bd87f16c92d" class="acestream-button" target="_blank" tabindex="17">
+                    <img src="./img/LaLigaTV_por_Movistar_Plus+_2022_logo.svg.png" alt="">
+                </a>
+                <a href="acestream://6d05b31e5e8fdae312fbd57897363a7b10ddb163" class="acestream-button" target="_blank" tabindex="18">
+                    <img src="./img/LaLigaTV_por_Movistar_Plus+_2022_logo.svg.png" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN 2 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://ca923c9873fd206a41c1e83ff8fc40e3cf323c9a" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">M.L. Campeones 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://0a26e20f39845e928411e09a124374fccb6e1478" class="acestream-button" target="_blank" tabindex="19">
+                    <img src="./img/Liga_de_Campeones_por_Movistar_Plus+_2022_logo.svg.png" alt="">
+                </a>
+                <a href="acestream://775abd8697715c48a357906d40734ccd2a10513c" class="acestream-button" target="_blank" tabindex="20">
+                    <img src="./img/Liga_de_Campeones_por_Movistar_Plus+_2022_logo.svg.png" alt="">
+                </a>
+                <a href="acestream://931b1984badcb821df7b47a66ac0835ac871b51c" class="acestream-button" target="_blank" tabindex="21">
+                    <img src="./img/Liga_de_Campeones_por_Movistar_Plus+_2022_logo.svg.png" alt="">
+                </a>
+            </div>
         </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://a929eeec1268d69d1556a2e3ace793b2577d8810" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">DAZN LaLiga 720p</div>
+            <div class="buttons-container">
+                <a href="acestream://8c8c1e047a1c5ed213ba74722a5345dc55c3c0eb" class="acestream-button" target="_blank" tabindex="22">
+                    <img src="./img/DAZN_LaLiga_2023_Logo.svg.png" alt="DAZN LaLiga Logo">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN 3 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://19cd05c7ae26f22737ae5728b571ca36abd8a2e8" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">DAZN 2 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://ca923c9873fd206a41c1e83ff8fc40e3cf323c9a" class="acestream-button" target="_blank" tabindex="23">
+                    <img src="./img/DAZN_2.svg" alt="">
+                </a>
+                <a href="acestream://a929eeec1268d69d1556a2e3ace793b2577d8810" class="acestream-button" target="_blank" tabindex="24">
+                    <img src="./img/DAZN_2.svg" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN 4 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://4e83f23945ab3e43982045f88ec31daaa4683102" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">DAZN 3 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://19cd05c7ae26f22737ae5728b571ca36abd8a2e8" class="acestream-button" target="_blank" tabindex="25">
+                    <img src="./img/DAZN_3.svg" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN Liga Fem-1</div>
-        <div class="buttons-container">
-            <a href="acestream://600222a4f98df80a2c0df2d60cb5ff3df9620710" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">DAZN 4 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://4e83f23945ab3e43982045f88ec31daaa4683102" class="acestream-button" target="_blank" tabindex="26">
+                    <img src="./img/DAZN_4.svg" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN Liga Fem-2</div>
-        <div class="buttons-container">
-            <a href="acestream://d6cdd724a97fcf851e7ef641c28d6beb8663496e" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">F1 TV 1080p</div>
+            <div class="buttons-container">
+                <a href="acestream://8c92cfef8dd37e2dd2d3b8985b81cc7708e24d3c" class="acestream-button" target="_blank" tabindex="31">
+                    <img src="./img/f1-tv-logo-1.png" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN Liga Fem-3</div>
-        <div class="buttons-container">
-            <a href="acestream://162942adc047d0f78eac056effbe5bbec54a5e51" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">M.L. Campeones 2</div>
+            <div class="buttons-container">
+                <a href="acestream://c070cdb701fc46bb79d17568d99fc64620443d63" class="acestream-button" target="_blank" tabindex="32">
+                    <img src="./img/CHAP1.png" alt="">
+                </a>
+                <a href="acestream://abdf9058786a48623d0de51a3adb414ae10b6e72" class="acestream-button" target="_blank" tabindex="33">
+                    <img src="./img/CHAP1.png" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN Liga Fem-4</div>
-        <div class="buttons-container">
-            <a href="acestream://e454681a152a86da504e63694f17f90d0586867d" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">M.L. Campeones 3</div>
+            <div class="buttons-container">
+                <a href="acestream://3618edda333dad5374ac2c801f5f14483934b97d" class="acestream-button" target="_blank" tabindex="34">
+                    <img src="./img/CHAP2.png" alt="">
+                </a>
+                <a href="acestream://0b348cc1ae499e810729661878764a0fab88ab69" class="acestream-button" target="_blank" tabindex="35">
+                    <img src="./img/CHAP2.png" alt="">
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">DAZN F1 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://d6281d4e6310269b416180442a470d23a4a99dc9" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://71eef80158aa8b37f3dc59f6793c6696df9a2dfa" class="acestream-button" target="_blank">Opción 2</a>
-            <a href="acestream://2c6e4c897661e6b0257bfe931b66d20b2ec763b6" class="acestream-button" target="_blank">Opción 3</a>
+        <div class="channel">
+            <div class="channel-title">M.L. Campeones 4</div>
+            <div class="buttons-container">
+                <a href="acestream://65a18a6bd83918a9586b673fec12405aaf4e9f7d" class="acestream-button" target="_blank" tabindex="36">
+                    <img src="./img/CHAP3.png" alt="">
+                </a>
+                <a href="acestream://f2df4f96b23388b45e75d848a48a510cf8af560f" class="acestream-button" target="_blank" tabindex="37">
+                    <img src="./img/CHAP3.png" alt="">
+                </a>
+            </div>
         </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://268289e7a3c5209960b53b4d43c8c65fab294b85" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">RFEF</div>
-        <div class="buttons-container">
-            <a href="acestream://c1ee6e1e0ef5928d8261f855c417de21794f437d" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://8677d339ecddd75165c0015025f598b6215974cf" class="acestream-button" target="_blank">Opción 2</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">F1 TV 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://8c92cfef8dd37e2dd2d3b8985b81cc7708e24d3c" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">LaLiga TV Bar 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://aa82e7d4f03061f2144a2f4be22f2e2210d42280" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://608b0faf7d3d25f6fe5dba13d5e4b4142949990e" class="acestream-button" target="_blank">Opción 2</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. LaLiga TV 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://94d34491106e00394835c8cb68aa94481339b53f" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://d3de78aebe544611a2347f54d5796bd87f16c92d" class="acestream-button" target="_blank">Opción 2</a>
-            <a href="acestream://6d05b31e5e8fdae312fbd57897363a7b10ddb163" class="acestream-button" target="_blank">Opción 3</a>
-        </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://1bc437bce57b4b0450f6d1f8d818b7e97000745e" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://55d4602cb22b0d8a33c10c2c2f42dae64a9e8895" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://3a74d9869b13e763476800740c6625e715a39879" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 2 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://639c561dd57fa3fc91fde715caeb696c5efb7ce7" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 3 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://571bff4d12b1791eb99dbf20bec38e630693a6a3" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 4 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://b4d1308a61e4caf8c06ac3d6ce89d165c015c2fb" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 5 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://fcc0fd75bf1dba40b108fcf0d3514e0e549bfbac" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 6 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://cc5782d37ae6b6e0bab396dd64074982d0879046" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
-
-    <div class="channel">
-        <div class="channel-title">M. Deportes 7 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://070f82d6443a52962d6a2ed9954c979b29404932" class="acestream-button" target="_blank">Opción 1</a>
+        <div class="channel">
+            <div class="channel-title">M.L. Campeones 5 SD</div>
+            <div class="buttons-container">
+                <a href="acestream://11744c25a594e17d587ed0871fe40ff21b4bd1e0" class="acestream-button" target="_blank" tabindex="38">
+                    <img src="./img/CHAP4.png" alt="">
+                </a>
+            </div>
         </div>
     </div>
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 1080p MultiAudio</div>
-        <div class="buttons-container">
-            <a href="acestream://0a26e20f39845e928411e09a124374fccb6e1478" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://775abd8697715c48a357906d40734ccd2a10513c" class="acestream-button" target="_blank">Opción 2</a>
-            <a href="acestream://931b1984badcb821df7b47a66ac0835ac871b51c" class="acestream-button" target="_blank">Opción 3</a>
-        </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://8edb264520569b2280c5e86b2dc734e120032903" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://6b56c1de436327b49e429a702e81e9269630e37a" class="acestream-button" target="_blank">Opción 2</a>
-        </div>
-    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> -->
+    <script>
+window.onload = () => {
+    const buttons = document.querySelectorAll('.acestream-button');
+    if (buttons.length > 0) {
+        buttons[0].focus();
+    }
+};
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 2 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://c070cdb701fc46bb79d17568d99fc64620443d63" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://abdf9058786a48623d0de51a3adb414ae10b6e72" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+document.addEventListener('keydown', (e) => {
+    const rows = Array.from(document.querySelectorAll('.buttons-container')); // Todas las filas
+    const carousel = document.getElementById('carousel'); // Contenedor principal
+    const focused = document.activeElement; // Elemento actualmente enfocado
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 3 1080p</div>
-        <div class="buttons-container">
-            <a href="acestream://3618edda333dad5374ac2c801f5f14483934b97d" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-        <div class="channel-title">720p</div>
-        <div class="buttons-container">
-            <a href="acestream://0b348cc1ae499e810729661878764a0fab88ab69" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+    // Determinar en qué fila y columna está el elemento enfocado
+    let currentRowIndex = rows.findIndex(row => row.contains(focused));
+    let currentColumnIndex = -1;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 4 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://65a18a6bd83918a9586b673fec12405aaf4e9f7d" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://f2df4f96b23388b45e75d848a48a510cf8af560f" class="acestream-button" target="_blank">Opción 2</a>
-        </div>
-    </div>
+    if (currentRowIndex !== -1) {
+        const currentRowButtons = Array.from(rows[currentRowIndex].querySelectorAll('.acestream-button'));
+        currentColumnIndex = currentRowButtons.indexOf(focused);
+    }
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 5 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://11744c25a594e17d587ed0871fe40ff21b4bd1e0" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+    let nextButton = null;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 6 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://fdda1f0dd8c33fbdc5a66ab98e291f570cae67cd" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+    switch (e.key) {
+        case 'ArrowRight': // Navegación a la derecha
+            if (currentRowIndex !== -1 && currentColumnIndex !== -1) {
+                nextButton = rows[currentRowIndex].querySelectorAll('.acestream-button')[currentColumnIndex + 1];
+            }
+            break;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 7 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://b7f47db93dced60f54e8f89e2366ed061b534049" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://5932623d2fd7ed16b01787251b418e4f59a01cda" class="acestream-button" target="_blank">Opción 2</a>
-        </div>
-    </div>
+        case 'ArrowLeft': // Navegación a la izquierda
+            if (currentRowIndex !== -1 && currentColumnIndex > 0) {
+                nextButton = rows[currentRowIndex].querySelectorAll('.acestream-button')[currentColumnIndex - 1];
+            }
+            break;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 8 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://d298c6e5c8be71f5995b45289c6388b225318b3c" class="acestream-button" target="_blank">Opción 1</a>
-            <a href="acestream://6c445141445b06d7b4328d80e2dd936bd0ca52ca" class="acestream-button" target="_blank">Opción 2</a>
-        </div>
-    </div>
+        case 'ArrowDown': // Navegación hacia abajo
+            if (currentRowIndex < rows.length - 1) {
+                const nextRowButtons = Array.from(rows[currentRowIndex + 1].querySelectorAll('.acestream-button'));
+                nextButton = nextRowButtons[Math.min(currentColumnIndex, nextRowButtons.length - 1)];
+                if (nextButton) {
+                    nextButton.focus();
+                    scrollIntoViewIfNeeded(nextButton, carousel);
+                }
+            }
+            break;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 9 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://2d7c4cfb3987b652a779afc894cca2fccbbacf21" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+        case 'ArrowUp': // Navegación hacia arriba
+            if (currentRowIndex > 0) {
+                const prevRowButtons = Array.from(rows[currentRowIndex - 1].querySelectorAll('.acestream-button'));
+                nextButton = prevRowButtons[Math.min(currentColumnIndex, prevRowButtons.length - 1)];
+                if (nextButton) {
+                    nextButton.focus();
+                    scrollIntoViewIfNeeded(nextButton, carousel);
+                }
+            }
+            break;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 10 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://c056f9e180cd7d40963129a17ff54f4ee8259353" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+        case 'Enter': // Acción en el botón enfocado
+            if (focused && focused.tagName === 'A') {
+                focused.click();
+            }
+            break;
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 11 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://a12a16f74cf12799d4475ae867dc61eb60e1ba2e" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+        default:
+            break;
+    }
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 12 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://df7d145fcaf0566db4098d2f10236185d92bc9fd" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+    // Enfoque sin scroll para movimientos horizontales
+    if (nextButton && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
+        nextButton.focus();
+    }
+});
 
-    <div class="channel">
-        <div class="channel-title">M.L. Campeones 13 SD</div>
-        <div class="buttons-container">
-            <a href="acestream://bdfe9ebe62d690c1b13eef4346d72e618cfbe804" class="acestream-button" target="_blank">Opción 1</a>
-        </div>
-    </div>
+/**
+ * Desplaza el contenedor para que el elemento esté completamente visible.
+ * @param {HTMLElement} element - El elemento que debe estar visible.
+ * @param {HTMLElement} container - El contenedor que debe desplazarse.
+ */
+function scrollIntoViewIfNeeded(element, container) {
+    const elementRect = element.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    if (elementRect.top < containerRect.top) {
+        // Elemento está por encima del área visible
+        container.scrollBy({
+            top: elementRect.top - containerRect.top,
+            behavior: 'smooth',
+        });
+    } else if (elementRect.bottom > containerRect.bottom) {
+        // Elemento está por debajo del área visible
+        container.scrollBy({
+            top: elementRect.bottom - containerRect.bottom,
+            behavior: 'smooth',
+        });
+    }
+}
+
+
+
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// Función para abrir el reproductor de Acestream
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// document.addEventListener('DOMContentLoaded', () => {
+//         const buttons = document.querySelectorAll('.acestream-button');
+//         const playerContainer = document.getElementById('acestream-player-container');
+//         const videoElement = document.getElementById('acestream-video');
+//         const closeButton = document.getElementById('close-player');
+
+//         buttons.forEach(button => {
+//             button.addEventListener('click', (event) => {
+//                 event.preventDefault();
+
+//                 const acestreamLink = button.getAttribute('href');
+//                 const streamId = acestreamLink.split('acestream://')[1];
+//                 const streamURL = `http://127.0.0.1:6878/ace/manifest.m3u8?id=${streamId}`;
+
+//                 // Usa hls.js si el navegador no soporta HLS nativamente
+//                 if (Hls.isSupported()) {
+//                     const hls = new Hls();
+//                     hls.loadSource(streamURL);
+//                     hls.attachMedia(videoElement);
+//                     videoElement.play();
+//                 } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+//                     // Reproducción nativa para navegadores compatibles con HLS
+//                     videoElement.src = streamURL;
+//                     videoElement.load();
+//                     videoElement.play();
+//                 } else {
+//                     alert('Tu navegador no soporta la reproducción del flujo.');
+//                 }
+
+//                 // Muestra el reproductor
+//                 playerContainer.style.display = 'block';
+//                 closeButton.style.display = 'block';
+//             });
+//         });
+
+//         closeButton.addEventListener('click', () => {
+//             videoElement.pause();
+//             videoElement.src = '';
+//             playerContainer.style.display = 'none';
+//             closeButton.style.display = 'none';
+//         });
+//     });
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+    </script>
 
 </body>
 
