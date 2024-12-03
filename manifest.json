@@ -4,12 +4,12 @@
     "description": "Disfruta de tus canales favoritos de fútbol y F1 en una experiencia similar a una app.",
     "icons": [
         {
-            "src": "logo-192x192.png",
+            "src": "./img/logo.webp",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "logo-512x512.png",
+            "src": "./img/logo.webp",
             "sizes": "512x512",
             "type": "image/png"
         }
